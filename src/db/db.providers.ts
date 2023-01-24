@@ -1,9 +1,9 @@
 import { Sequelize } from 'sequelize-typescript';
-import { dbConfig } from 'credentials/db.credentials';
+import { dbConfig } from '../../credentials/db.credentials';
 const { DB, HOST, PASSWORD, USER, DIALECT, PORT } = dbConfig;
-import { User } from 'src/user/user.model';
-import { Bookmark } from 'src/bookmark/bookmark.model';
-import { db } from 'src/common/translations/translation';
+import { User } from 'user/user.model';
+import { Bookmark } from 'bookmark/bookmark.model';
+import { db } from 'common/translations/translation';
 
 const dbRelations = () => {
   User.hasMany(Bookmark);

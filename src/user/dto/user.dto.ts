@@ -1,6 +1,5 @@
-import { Injectable } from '@nestjs/common/decorators/core/injectable.decorator';
-import { IUserDto } from 'src/common/interfaces/userDtoInterface';
-import { User } from '../user.model';
+import { IUserDto } from 'common/interfaces/userDtoInterface';
+import { User } from 'user/user.model';
 
 export class UserDto {
   constructor() {}

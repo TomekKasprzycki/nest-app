@@ -1,9 +1,9 @@
 import { Injectable, ForbiddenException, Redirect } from '@nestjs/common';
 import { AuthDto } from './dto';
 import * as argon from 'argon2';
-import { UserService } from 'src/user/user.service';
-import { User } from 'src/user/user.model';
-import { responseErrors } from 'src/common/translations/translation';
+import { UserService } from 'user/user.service';
+import { User } from 'user/user.model';
+import { responseErrors } from 'common/translations/translation';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config/dist';
 

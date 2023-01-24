@@ -1,8 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
 import { UseGuards } from '@nestjs/common/decorators';
-import { JwtGuard } from 'src/auth/guard';
-import { GetUser } from 'src/auth/decorator';
-import { IUser } from 'src/common/interfaces/userInterface';
+import { JwtGuard } from 'auth/guard';
+import { GetUser } from 'auth/decorator';
+import { IUser } from 'common/interfaces/userInterface';
 
 @UseGuards(JwtGuard)
 @Controller('users')

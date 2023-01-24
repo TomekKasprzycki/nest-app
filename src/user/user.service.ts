@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { where } from 'sequelize';
-import { IUser } from 'src/common/interfaces/userInterface';
-import { user } from 'src/common/translations/translation';
+import { IUser } from 'common/interfaces/userInterface';
+import { user } from 'common/translations/translation';
 import { User } from './user.model';
 
 @Injectable()
