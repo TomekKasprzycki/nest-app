@@ -26,7 +26,7 @@ export class AuthService {
     try {
       const savedUser = await this.userService.create(user.dataValues);
       return 'You can login';
-    } catch (err) {
+    } catch (err: any) {
       if (err.name === 'SequelizeUniqueConstraintError') throw new ForbiddenException(EMAIL_TAKEN);
 
       throw new Error(UPS);

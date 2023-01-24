@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
-import { dbConfig } from '../../credentials/db.credentials';
+import { dbConfig } from 'db/credentials/db.credentials';
 const { DB, HOST, PASSWORD, USER, DIALECT, PORT } = dbConfig;
 import { User } from 'user/user.model';
 import { Bookmark } from 'bookmark/bookmark.model';
