@@ -1,9 +1,9 @@
 import { Injectable, ForbiddenException, Redirect } from '@nestjs/common';
 import { AuthDto } from './dto';
 import * as argon from 'argon2';
-import { UserService } from 'user/user.service';
-import { User } from 'user/user.model';
-import { responseErrors } from 'common/translations/translation';
+import { UserService } from 'src/user/user.service';
+import { User } from 'src/user/user.model';
+import { responseErrors } from 'src/common/translations/translation';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config/dist';
 
@@ -24,7 +24,7 @@ export class AuthService {
     user.password = hashedPassword;
 
     try {
-      const savedUser = await this.userService.create(user.dataValues);
+      await this.userService.create(user.dataValues);
       return 'You can login';
     } catch (err: any) {
       if (err.name === 'SequelizeUniqueConstraintError') throw new ForbiddenException(EMAIL_TAKEN);
@@ -39,17 +39,26 @@ export class AuthService {
       if (!user) return new ForbiddenException(BAD_CREDENTIALS);
       const checkPassword = await argon.verify(user.password, credentials.password);
 
-      if (checkPassword) return this.signToken(user.id, user.login);
-      return false;
+      if (checkPassword)
+        return this.signToken(
+          user.dataValues.id,
+          user.dataValues.login,
+          user.dataValues.Roles.map((role) => role.dataValues.name)
+        );
     } catch (err) {
       throw new Error(UPS);
     }
   }
 
-  async signToken(userId: number, email: string): Promise<{ access_token: string }> {
+  async signToken(
+    userId: number,
+    email: string,
+    roles: string[]
+  ): Promise<{ access_token: string }> {
     const payload = {
       sub: userId,
       email,
+      roles,
     };
     const signature = this.config.get('JWT_SECRET');
     const token = await this.jwt.signAsync(payload, {

@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AuthModule } from 'auth/auth.module';
-import { UserModule } from 'user/user.module';
-import { BookmarkModule } from 'bookmark/bookmark.module';
-import { DatabaseModule } from 'db/db.module';
+import { AuthModule } from 'src/auth/auth.module';
+import { UserModule } from 'src/user/user.module';
+import { BookmarkModule } from 'src/bookmark/bookmark.module';
+import { DatabaseModule } from 'src/db/db.module';
 import { ConfigModule } from '@nestjs/config';
+import { RoleModule } from './role/role.module';
+import { UserRoleModule } from './user-role/user-role.module';
 
 @Module({
   imports: [
@@ -11,9 +13,11 @@ import { ConfigModule } from '@nestjs/config';
     UserModule,
     BookmarkModule,
     DatabaseModule,
+    UserRoleModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    RoleModule,
   ],
 })
 export class AppModule {}

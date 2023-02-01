@@ -6,6 +6,14 @@ export const user = {
   REPO: 'USER_REPOSITORY',
 };
 
+export const role = {
+  REPO: 'ROLE_REPOSITORY',
+};
+
+export const userRole = {
+  REPO: 'USER_ROLE_REPOSITORY',
+};
+
 export const db = {
   NAME: 'SEQUELIZE',
 };
